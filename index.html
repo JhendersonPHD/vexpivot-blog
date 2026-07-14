@@ -16,7 +16,9 @@
 
   <link rel="stylesheet" href="/assets/style.css">
 </head>
-<body>
+<body class="theme-light">
+  <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
   <header class="site-header"><div class="container">
     <a href="/" class="logo">VexPivot Blog</a>
     <nav class="main-nav">
@@ -28,7 +30,12 @@
       <a href="/honeydew-launch.html">HoneyDew</a>
       
     </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <span class="theme-icon-light" aria-hidden="true">☀</span>
+      <span class="theme-icon-dark" aria-hidden="true">☾</span>
+    </button>
   </div></header>
+
   <main class="container">
     
   <section class="hero">
@@ -36,20 +43,32 @@
     <p class="tagline">Building apps that work with your brain, not against it. Product reviews, launch announcements, and wellness insights from VexPivot.</p>
   </section>
 
-  <section class="posts-grid">
+  <section class="search-section" aria-label="Search articles">
+    <input
+      type="search"
+      id="post-search"
+      class="search-input"
+      placeholder="Search articles by title, description, or keyword..."
+      autocomplete="off"
+      aria-label="Search articles"
+    >
+    <p id="search-status" class="search-status" aria-live="polite"></p>
+  </section>
+
+  <section class="posts-grid" id="posts-grid">
     
-    <article class="post-card">
+    <article class="post-card" data-title="focuspivot: the adhd focus timer that works with your brain" data-description="focuspivot is an adhd focus timer designed for neurodivergent minds. learn how adaptive sessions, visual time displays, and gentle task launches help you focus." data-keywords="adhd focus timer, neurodivergent planner, time blindness app">
       <a href="/focuspivot-launch.html" class="post-card-link">
         <div class="post-card-content">
           <span class="post-date">2026-07-13</span>
           <h2 class="post-title">FocusPivot: The ADHD Focus Timer That Works With Your Brain</h2>
-          <p class="post-excerpt">FocusPivot is an ADHD focus timer designed for neurodivergent minds. Learn how adaptive focus sessions, visual time displays, and gentle task launches help you...</p>
+          <p class="post-excerpt">FocusPivot is an ADHD focus timer designed for neurodivergent minds. Learn how adaptive sessions, visual time displays, and gentle task launches help you focus.</p>
           <span class="post-keywords">ADHD focus timer, neurodivergent planner, time blindness app</span>
         </div>
       </a>
     </article>
     
-    <article class="post-card">
+    <article class="post-card" data-title="honeydew: the gentle habit tracker for self-care that actually sticks" data-description="honeydew is a gentle habit tracker and wellness quest app built for burnout recovery, mental health, and self-care routines that don&#39;t rely on shame or streaks." data-keywords="gentle habit tracker, wellness quest app, self-care routine">
       <a href="/honeydew-launch.html" class="post-card-link">
         <div class="post-card-content">
           <span class="post-date">2026-07-13</span>
@@ -60,6 +79,7 @@
       </a>
     </article>
     
+    <p id="no-results" class="no-results" hidden>No articles match your search. Try a different keyword.</p>
   </section>
 
   
@@ -67,51 +87,129 @@
     <h3>Browse by Topic</h3>
     <div class="tags">
       
-      <span class="tag">adhd focus timer</span>
+      <button class="tag tag-button" type="button" data-keyword="adhd focus timer">adhd focus timer</button>
       
-      <span class="tag">adhd productivity</span>
+      <button class="tag tag-button" type="button" data-keyword="adhd productivity">adhd productivity</button>
       
-      <span class="tag">adhd study timer</span>
+      <button class="tag tag-button" type="button" data-keyword="adhd study timer">adhd study timer</button>
       
-      <span class="tag">body doubling</span>
+      <button class="tag tag-button" type="button" data-keyword="body doubling">body doubling</button>
       
-      <span class="tag">burnout recovery</span>
+      <button class="tag tag-button" type="button" data-keyword="burnout recovery">burnout recovery</button>
       
-      <span class="tag">executive function support</span>
+      <button class="tag tag-button" type="button" data-keyword="executive function support">executive function support</button>
       
-      <span class="tag">gentle habit tracker</span>
+      <button class="tag tag-button" type="button" data-keyword="gentle habit tracker">gentle habit tracker</button>
       
-      <span class="tag">gentle self-care</span>
+      <button class="tag tag-button" type="button" data-keyword="gentle self-care">gentle self-care</button>
       
-      <span class="tag">gentle task launch</span>
+      <button class="tag tag-button" type="button" data-keyword="gentle task launch">gentle task launch</button>
       
-      <span class="tag">mental health tracker</span>
+      <button class="tag tag-button" type="button" data-keyword="mental health tracker">mental health tracker</button>
       
-      <span class="tag">mood-aware tracking</span>
+      <button class="tag tag-button" type="button" data-keyword="mood-aware tracking">mood-aware tracking</button>
       
-      <span class="tag">neurodivergent planner</span>
+      <button class="tag tag-button" type="button" data-keyword="neurodivergent planner">neurodivergent planner</button>
       
-      <span class="tag">no-streak habit tracker</span>
+      <button class="tag tag-button" type="button" data-keyword="no-streak habit tracker">no-streak habit tracker</button>
       
-      <span class="tag">pomodoro alternative</span>
+      <button class="tag tag-button" type="button" data-keyword="pomodoro alternative">pomodoro alternative</button>
       
-      <span class="tag">self-care routine</span>
+      <button class="tag tag-button" type="button" data-keyword="self-care routine">self-care routine</button>
       
-      <span class="tag">shame-free habits</span>
+      <button class="tag tag-button" type="button" data-keyword="shame-free habits">shame-free habits</button>
       
-      <span class="tag">task initiation</span>
+      <button class="tag tag-button" type="button" data-keyword="task initiation">task initiation</button>
       
-      <span class="tag">time blindness app</span>
+      <button class="tag tag-button" type="button" data-keyword="time blindness app">time blindness app</button>
       
-      <span class="tag">wellness habits</span>
+      <button class="tag tag-button" type="button" data-keyword="wellness habits">wellness habits</button>
       
-      <span class="tag">wellness quest app</span>
+      <button class="tag tag-button" type="button" data-keyword="wellness quest app">wellness quest app</button>
       
     </div>
   </aside>
   
 
+  <footer class="index-footer">
+    <p>Published by <strong>VexPivot</strong> &mdash; Building apps that work with your brain, not against it.</p>
+  </footer>
+
+  <script>
+    // ===== Index-page search and filter interactivity =====
+    (function() {
+      'use strict';
+
+      var searchInput = document.getElementById('post-search');
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.post-card'));
+      var statusEl = document.getElementById('search-status');
+      var noResults = document.getElementById('no-results');
+      var totalCount = cards.length;
+
+      function updateResults(query) {
+        var needle = (query || '').toLowerCase().trim();
+        var visible = 0;
+        cards.forEach(function(card) {
+          if (!needle) {
+            card.hidden = false;
+            visible++;
+            return;
+          }
+          var hay = (card.dataset.title || '') + ' ' +
+                    (card.dataset.description || '') + ' ' +
+                    (card.dataset.keywords || '');
+          var match = hay.indexOf(needle) !== -1;
+          card.hidden = !match;
+          if (match) visible++;
+        });
+
+        if (noResults) noResults.hidden = visible !== 0 || needle === '';
+
+        if (!needle) {
+          statusEl.textContent = totalCount + ' article' + (totalCount === 1 ? '' : 's');
+        } else {
+          statusEl.textContent = visible + ' of ' + totalCount + ' match "' + query + '"';
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          updateResults(searchInput.value);
+        });
+        // Initialize from URL ?q= param
+        var params = new URLSearchParams(window.location.search);
+        var initial = params.get('q');
+        if (initial) {
+          searchInput.value = initial;
+          updateResults(initial);
+        } else {
+          updateResults('');
+        }
+      }
+
+      // Keyword tag filter — clicking a keyword searches
+      var tagButtons = document.querySelectorAll('.tag-button');
+      tagButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          if (searchInput) {
+            searchInput.value = btn.dataset.keyword || btn.textContent;
+            updateResults(searchInput.value);
+            searchInput.focus();
+            // Scroll to results
+            var grid = document.getElementById('posts-grid');
+            if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+  </script>
+
   </main>
+
+  <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top" title="Back to top">
+    <span aria-hidden="true">↑</span>
+  </button>
+
   <footer class="site-footer"><div class="container">
     <p><strong>Published by VexPivot</strong> &mdash; Building apps that work with your brain, not against it.</p>
     <p class="footer-links">
@@ -125,5 +223,116 @@
     </p>
     <p class="footer-meta">&copy; 2026 VexPivot LLC. All rights reserved.</p>
   </div></footer>
+
+  <script>
+    // ===== VexPivot Blog — Interactive Features =====
+    (function() {
+      'use strict';
+
+      // Theme toggle (light/dark mode)
+      var THEME_KEY = 'vexpivot-theme';
+      var html = document.documentElement;
+      var body = document.body;
+
+      function applyTheme(theme) {
+        body.classList.remove('theme-light', 'theme-dark');
+        body.classList.add('theme-' + theme);
+        html.classList.remove('theme-light', 'theme-dark');
+        html.classList.add('theme-' + theme);
+      }
+
+      function getStoredTheme() {
+        try {
+          var stored = localStorage.getItem(THEME_KEY);
+          if (stored === 'dark' || stored === 'light') return stored;
+        } catch (e) { /* localStorage unavailable */ }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+
+      applyTheme(getStoredTheme());
+
+      var themeBtn = document.getElementById('theme-toggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+          var current = body.classList.contains('theme-dark') ? 'dark' : 'light';
+          var next = current === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+          try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* noop */ }
+        });
+      }
+
+      // Reading progress bar
+      var progressEl = document.getElementById('reading-progress');
+      function updateProgress() {
+        if (!progressEl) return;
+        var doc = document.documentElement;
+        var scrolled = doc.scrollTop || document.body.scrollTop;
+        var max = (doc.scrollHeight - doc.clientHeight) || 1;
+        var pct = Math.min(100, Math.max(0, (scrolled / max) * 100));
+        progressEl.style.width = pct + '%';
+        progressEl.setAttribute('aria-valuenow', String(Math.round(pct)));
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
+
+      // Scroll-to-top button
+      var scrollBtn = document.getElementById('scroll-top');
+      function updateScrollBtn() {
+        if (!scrollBtn) return;
+        var scrolled = window.scrollY || document.documentElement.scrollTop;
+        scrollBtn.classList.toggle('is-visible', scrolled > 400);
+      }
+      if (scrollBtn) {
+        scrollBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+      window.addEventListener('scroll', updateScrollBtn, { passive: true });
+      updateScrollBtn();
+
+      // Smooth anchor scrolling with offset for sticky header
+      document.addEventListener('click', function(e) {
+        var target = e.target;
+        while (target && target.tagName !== 'A') target = target.parentNode;
+        if (!target || !target.getAttribute) return;
+        var href = target.getAttribute('href');
+        if (!href || href.charAt(0) !== '#') return;
+        var el = document.querySelector(href);
+        if (el) {
+          e.preventDefault();
+          var top = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+          history.replaceState(null, '', href);
+        }
+      });
+
+      // Heading anchor links — add # links to all h2/h3 in post body
+      var postBody = document.querySelector('.post-body');
+      if (postBody) {
+        var headings = postBody.querySelectorAll('h2, h3');
+        headings.forEach(function(h) {
+          if (!h.id) {
+            h.id = h.textContent.trim()
+              .toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-|-$/g, '');
+          }
+        });
+      }
+
+      // Mark external links
+      var postLinks = document.querySelectorAll('.post-body a[href^="http"]');
+      postLinks.forEach(function(link) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+    })();
+  </script>
 </body>
 </html>
