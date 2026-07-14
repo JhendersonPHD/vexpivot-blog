@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VexPivot Blog</title>
+    <link>https://jhendersonphd.github.io/vexpivot-blog</link>
+    <description>Building apps that work with your brain, not against it. Product reviews, launch announcements, and wellness insights from VexPivot.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 14 Jul 2026 02:13:46 +0000</lastBuildDate>
+    <atom:link href="https://jhendersonphd.github.io/vexpivot-blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FocusPivot: The ADHD Focus Timer That Works With Your Brain</title>
+      <link>https://jhendersonphd.github.io/vexpivot-blog/focuspivot-launch.html</link>
+      <description>FocusPivot is an ADHD focus timer designed for neurodivergent minds. Learn how adaptive focus sessions, visual time displays, and gentle task launches help you...</description>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jhendersonphd.github.io/vexpivot-blog/focuspivot-launch.html</guid>
+      <category>ADHD focus timer</category>
+      <category>neurodivergent planner</category>
+      <category>time blindness app</category>
+      <category>task initiation</category>
+      <category>body doubling</category>
+    </item>
+    <item>
+      <title>HoneyDew: The Gentle Habit Tracker for Self-Care That Actually Sticks</title>
+      <link>https://jhendersonphd.github.io/vexpivot-blog/honeydew-launch.html</link>
+      <description>HoneyDew is a gentle habit tracker and wellness quest app built for burnout recovery, mental health, and self-care routines that don't rely on shame or streaks.</description>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://jhendersonphd.github.io/vexpivot-blog/honeydew-launch.html</guid>
+      <category>gentle habit tracker</category>
+      <category>wellness quest app</category>
+      <category>self-care routine</category>
+      <category>burnout recovery</category>
+      <category>no-streak habit tracker</category>
+    </item>
+  </channel>
+</rss>

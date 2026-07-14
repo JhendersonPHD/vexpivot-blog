@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="HoneyDew: The Gentle Habit Tracker for Self-Care That Actually Sticks">
   <meta name="twitter:description" content="HoneyDew is a gentle habit tracker and wellness quest app built for burnout recovery, mental health, and self-care routines that don&#39;t rely on shame or streaks.">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "HoneyDew: The Gentle Habit Tracker for Self-Care That Actually Sticks", "description": "HoneyDew is a gentle habit tracker and wellness quest app built for burnout recovery, mental health, and self-care routines that don't rely on shame or streaks.", "url": "https://jhendersonphd.github.io/vexpivot-blog/honeydew-launch.html", "datePublished": "2026-07-13", "dateModified": "2026-07-13", "author": {"@type": "Organization", "name": "VexPivot"}, "publisher": {"@type": "Organization", "name": "VexPivot", "url": "https://jhendersonphd.github.io/vexpivot-blog"}, "keywords": "gentle habit tracker, wellness quest app, self-care routine, burnout recovery, no-streak habit tracker, wellness habits, mental health tracker, shame-free habits, mood-aware tracking, gentle self-care", "articleSection": "blog", "wordCount": 2418, "inLanguage": "en-US"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "HoneyDew: The Gentle Habit Tracker for Self-Care That Actually Sticks", "description": "HoneyDew is a gentle habit tracker and wellness quest app built for burnout recovery, mental health, and self-care routines that don't rely on shame or streaks.", "url": "https://jhendersonphd.github.io/vexpivot-blog/honeydew-launch.html", "datePublished": "2026-07-13", "dateModified": "2026-07-13", "author": {"@type": "Organization", "name": "VexPivot"}, "publisher": {"@type": "Organization", "name": "VexPivot", "url": "https://jhendersonphd.github.io/vexpivot-blog"}, "keywords": "gentle habit tracker, wellness quest app, self-care routine, burnout recovery, no-streak habit tracker, wellness habits, mental health tracker, shame-free habits, mood-aware tracking, gentle self-care", "articleSection": "blog", "wordCount": 2684, "inLanguage": "en-US"}</script>
 
   <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -46,13 +46,66 @@
       <div class="post-meta">
         <time datetime="2026-07-13">2026-07-13</time>
         <span class="separator">&middot;</span>
-        <span class="reading-time">12 min read</span>
+        <span class="reading-time">13 min read</span>
         <span class="separator">&middot;</span>
         <span class="author">By VexPivot</span>
       </div>
     </header>
     <div class="post-body">
-      <h2>Build Wellness Routines Without the Guilt, Shame, or Broken Streaks</h2>
+      <h2>Technical Architecture: Mood-Aware Habit Tracking</h2>
+<p>HoneyDew&rsquo;s tracking layer pairs each habit completion with mood context so the app can surface gentle, judgment-free patterns instead of streaks or red marks. The simplified core looks like this:</p>
+<pre><code class="language-python">import time
+from collections import defaultdict
+
+class MoodAwareTracker:
+    def __init__(self):
+        self.entries = []
+        self.mood_labels = {
+            1: &quot;overwhelmed&quot;, 2: &quot;anxious&quot;, 3: &quot;neutral&quot;,
+            4: &quot;calm&quot;, 5: &quot;peaceful&quot;
+        }
+
+    def log_habit(self, habit_name, mood_before, mood_after, energy=None):
+        entry = {
+            &quot;habit&quot;: habit_name,
+            &quot;mood_before&quot;: mood_before,
+            &quot;mood_after&quot;: mood_after,
+            &quot;mood_delta&quot;: mood_after - mood_before,
+            &quot;energy&quot;: energy or (mood_after + 5) / 2,
+            &quot;ts&quot;: time.time(),
+        }
+        self.entries.append(entry)
+        return entry
+
+    def completion_rate(self, habit_name, window_days=14):
+        cutoff = time.time() - window_days * 86400
+        relevant = [e for e in self.entries if e[&quot;habit&quot;] == habit_name and e[&quot;ts&quot;] &gt;= cutoff]
+        return len(relevant) / max(1, window_days)
+
+    def gentle_insight(self, habit_name, window_days=14):
+        relevant = [e for e in self.entries if e[&quot;habit&quot;] == habit_name]
+        if len(relevant) &lt; 3:
+            return None
+        avg_mood_change = sum(e[&quot;mood_delta&quot;] for e in relevant) / len(relevant)
+        completion = self.completion_rate(habit_name, window_days)
+        if avg_mood_change &gt; 0.5 and completion &gt; 0.4:
+            return f&quot;Your {habit_name} habit tends to lift your mood and stick at {int(completion * 100)}%.&quot;
+        if avg_mood_change &gt; 0.5:
+            return f&quot;{habit_name.capitalize()} boosts your mood when you do it. Keep it gentle.&quot;
+        if avg_mood_change &lt; -0.5:
+            return f&quot;{habit_name.capitalize()} sometimes drains you. Consider adjusting the format.&quot;
+        return f&quot;{habit_name.capitalize()} is a stable part of your routine — no pressure to do more.&quot;
+
+    def suggest_next_habit(self, current_mood):
+        if current_mood &lt;= 2:
+            return &quot;Take three deep breaths&quot;
+        if current_mood == 3:
+            return &quot;Drink a glass of water&quot;
+        return &quot;Take a five-minute walk&quot;
+</code></pre>
+<p>This is the engine behind the mood-aware tracking and gentle insights described in the rest of the post.</p>
+<hr />
+<h2>Build Wellness Routines Without the Guilt, Shame, or Broken Streaks</h2>
 <p>You downloaded a habit tracker. You used it for six days. Then you missed a day, broke your streak, and never opened it again. Sound familiar?</p>
 <p>Here&rsquo;s the truth: it&rsquo;s not your fault. Traditional habit trackers are designed around guilt — miss a day and you lose your streak, get a red mark, or worse, a notification asking &ldquo;Where did you go?&rdquo; For anyone recovering from burnout, managing anxiety, or just trying to build a self-care routine without judgment, these apps do more harm than good.</p>
 <p><strong>HoneyDew is a gentle habit tracker built on a radical idea: you don&rsquo;t need shame to grow.</strong> This wellness quest app helps you build self-care routines through encouragement, flexibility, and understanding — not streaks, guilt trips, or impossible standards.</p>

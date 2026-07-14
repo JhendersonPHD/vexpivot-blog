@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="FocusPivot: The ADHD Focus Timer That Works With Your Brain">
   <meta name="twitter:description" content="FocusPivot is an ADHD focus timer designed for neurodivergent minds. Learn how adaptive focus sessions, visual time displays, and gentle task launches help you...">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "FocusPivot: The ADHD Focus Timer That Works With Your Brain", "description": "FocusPivot is an ADHD focus timer designed for neurodivergent minds. Learn how adaptive focus sessions, visual time displays, and gentle task launches help...", "url": "https://jhendersonphd.github.io/vexpivot-blog/focuspivot-launch.html", "datePublished": "2026-07-13", "dateModified": "2026-07-13", "author": {"@type": "Organization", "name": "VexPivot"}, "publisher": {"@type": "Organization", "name": "VexPivot", "url": "https://jhendersonphd.github.io/vexpivot-blog"}, "keywords": "ADHD focus timer, neurodivergent planner, time blindness app, task initiation, body doubling, Pomodoro alternative, ADHD productivity, executive function support, ADHD study timer, gentle task launch", "articleSection": "blog", "wordCount": 3183, "inLanguage": "en-US"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "FocusPivot: The ADHD Focus Timer That Works With Your Brain", "description": "FocusPivot is an ADHD focus timer designed for neurodivergent minds. Learn how adaptive focus sessions, visual time displays, and gentle task launches help...", "url": "https://jhendersonphd.github.io/vexpivot-blog/focuspivot-launch.html", "datePublished": "2026-07-13", "dateModified": "2026-07-13", "author": {"@type": "Organization", "name": "VexPivot"}, "publisher": {"@type": "Organization", "name": "VexPivot", "url": "https://jhendersonphd.github.io/vexpivot-blog"}, "keywords": "ADHD focus timer, neurodivergent planner, time blindness app, task initiation, body doubling, Pomodoro alternative, ADHD productivity, executive function support, ADHD study timer, gentle task launch", "articleSection": "blog", "wordCount": 3379, "inLanguage": "en-US"}</script>
 
   <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -46,13 +46,54 @@
       <div class="post-meta">
         <time datetime="2026-07-13">2026-07-13</time>
         <span class="separator">&middot;</span>
-        <span class="reading-time">15 min read</span>
+        <span class="reading-time">16 min read</span>
         <span class="separator">&middot;</span>
         <span class="author">By VexPivot</span>
       </div>
     </header>
     <div class="post-body">
-      <h2>Finally, a Focus Timer Built for ADHD and Neurodivergent Minds</h2>
+      <h2>Technical Architecture: The Adaptive Session Engine</h2>
+<p>FocusPivot&rsquo;s core scheduling algorithm adjusts session duration in real time based on the user&rsquo;s recent focus history and detected flow states. Below is a simplified version of the adaptive engine that powers every session:</p>
+<pre><code class="language-python">import time
+from collections import deque
+
+class AdaptiveSessionEngine:
+    def __init__(self, history_size=10, min_minutes=3, max_minutes=60):
+        self.history = deque(maxlen=history_size)
+        self.min_minutes = min_minutes
+        self.max_minutes = max_minutes
+        self.flow_threshold = 0.85
+
+    def suggest_duration(self, requested_minutes, current_mood=3):
+        if not self.history:
+            return max(self.min_minutes, min(requested_minutes, self.max_minutes))
+        recent = list(self.history)
+        completion_rates = [s.actual / max(s.planned, 1) for s in recent]
+        avg_rate = sum(completion_rates) / len(completion_rates)
+        mood_factor = 1.0 + (current_mood - 3) * 0.1
+        if avg_rate &gt; self.flow_threshold:
+            suggested = requested_minutes * 1.15 * mood_factor
+        elif avg_rate &gt; 0.5:
+            suggested = requested_minutes * mood_factor
+        else:
+            suggested = requested_minutes * 0.7 * mood_factor
+        return round(max(self.min_minutes, min(suggested, self.max_minutes)))
+
+    def record_session(self, planned, actual, flow_detected=False):
+        self.history.append(type(&quot;Session&quot;, (), {
+            &quot;planned&quot;: planned, &quot;actual&quot;: actual, &quot;flow&quot;: flow_detected,
+            &quot;ts&quot;: time.time()
+        })())
+
+    def should_extend(self, elapsed_seconds, planned_seconds):
+        if elapsed_seconds &lt; planned_seconds * 0.5:
+            return False
+        recent_flow = sum(1 for s in list(self.history)[-3:] if s.flow) / max(len(list(self.history)[-3:]), 1)
+        return recent_flow &gt;= 0.5 and elapsed_seconds &lt; planned_seconds * 2.0
+</code></pre>
+<p>This engine powers the adaptive focus sessions described below. It learns from your actual behavior rather than imposing rigid intervals.</p>
+<hr />
+<h2>Finally, a Focus Timer Built for ADHD and Neurodivergent Minds</h2>
 <p>If you have ever sat down to work and watched two hours vanish into a YouTube rabbit hole, a Wikipedia spiral, or a half-finished conversation in a group chat, you are not broken. You are running a different operating system. Traditional Pomodoro timers were not designed for ADHD brains. They assume you can simply decide to focus. They assume twenty-five minutes is the universal &ldquo;right&rdquo; interval. They assume willpower is the problem and discipline is the answer. None of these assumptions hold up for the neurodivergent brain, and millions of people are left feeling like failures because a tool that was supposed to help them actually made them feel worse.</p>
 <p><strong>FocusPivot is different.</strong> This ADHD focus timer adapts to how your brain actually works, not how a productivity guru thinks it should. Whether you are managing time blindness, struggling with task initiation, bouncing between hyperfocus and burnout, or looking for a neurodivergent planner that does not make you feel like a failure, FocusPivot meets you exactly where you are.</p>
 <p>No shame. No streaks to break. No guilt trips. No passive-aggressive notifications when you miss a day. Just a focus tool that understands executive function challenges and gives you the structure your brain is craving without the judgment it has learned to expect from productivity software.</p>
