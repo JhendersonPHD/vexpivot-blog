@@ -24,7 +24,9 @@
 
   <link rel="stylesheet" href="/assets/style.css">
 </head>
-<body>
+<body class="theme-light">
+  <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
   <header class="site-header"><div class="container">
     <a href="/" class="logo">VexPivot Blog</a>
     <nav class="main-nav">
@@ -36,10 +38,15 @@
       <a href="/honeydew-launch.html">HoneyDew</a>
       
     </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <span class="theme-icon-light" aria-hidden="true">☀</span>
+      <span class="theme-icon-dark" aria-hidden="true">☾</span>
+    </button>
   </div></header>
+
   <main class="container">
     
-  <article class="blog-post">
+  <article class="blog-post" data-slug="honeydew-launch" data-reading-time="13">
     <header class="post-header">
       <span class="post-category">blog</span>
       <h1 class="post-title">HoneyDew: The Gentle Habit Tracker for Self-Care That Actually Sticks</h1>
@@ -50,9 +57,32 @@
         <span class="separator">&middot;</span>
         <span class="author">By VexPivot</span>
       </div>
+      <div class="post-actions">
+        <button id="copy-link-btn" class="action-btn" type="button" aria-label="Copy link to this article" title="Copy link">
+          <span aria-hidden="true">🔗</span> Copy link
+        </button>
+        <button id="share-btn" class="action-btn" type="button" aria-label="Share this article" title="Share">
+          <span aria-hidden="true">↗</span> Share
+        </button>
+        <button id="print-btn" class="action-btn" type="button" aria-label="Print this article" title="Print">
+          <span aria-hidden="true">⎙</span> Print
+        </button>
+      </div>
     </header>
+
+    <aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+      <button id="toc-toggle" class="toc-toggle" type="button" aria-expanded="true" aria-controls="toc-list">
+        <span class="toc-icon" aria-hidden="true">≡</span> Table of Contents
+      </button>
+      <nav id="toc-list" class="toc-list" aria-label="Article sections">
+        <noscript>
+          <p>JavaScript is disabled — navigation links are below in the post body.</p>
+        </noscript>
+      </nav>
+    </aside>
+
     <div class="post-body">
-      <h2>Technical Architecture: Mood-Aware Habit Tracking</h2>
+      <h2 id="technical-architecture-mood-aware-habit-tracking">Technical Architecture: Mood-Aware Habit Tracking</h2>
 <p>HoneyDew&rsquo;s tracking layer pairs each habit completion with mood context so the app can surface gentle, judgment-free patterns instead of streaks or red marks. The simplified core looks like this:</p>
 <pre><code class="language-python">import time
 from collections import defaultdict
@@ -105,26 +135,26 @@ class MoodAwareTracker:
 </code></pre>
 <p>This is the engine behind the mood-aware tracking and gentle insights described in the rest of the post.</p>
 <hr />
-<h2>Build Wellness Routines Without the Guilt, Shame, or Broken Streaks</h2>
+<h2 id="build-wellness-routines-without-the-guilt-shame-or-broken-streaks">Build Wellness Routines Without the Guilt, Shame, or Broken Streaks</h2>
 <p>You downloaded a habit tracker. You used it for six days. Then you missed a day, broke your streak, and never opened it again. Sound familiar?</p>
 <p>Here&rsquo;s the truth: it&rsquo;s not your fault. Traditional habit trackers are designed around guilt — miss a day and you lose your streak, get a red mark, or worse, a notification asking &ldquo;Where did you go?&rdquo; For anyone recovering from burnout, managing anxiety, or just trying to build a self-care routine without judgment, these apps do more harm than good.</p>
 <p><strong>HoneyDew is a gentle habit tracker built on a radical idea: you don&rsquo;t need shame to grow.</strong> This wellness quest app helps you build self-care routines through encouragement, flexibility, and understanding — not streaks, guilt trips, or impossible standards.</p>
 <p>Whether you&rsquo;re rebuilding after burnout, starting your first wellness routine, or looking for a habit tracker that won&rsquo;t make you feel terrible about yourself, HoneyDew meets you with softness where others meet you with pressure.</p>
 <hr />
-<h2>Why Most Habit Trackers Hurt More Than They Help</h2>
+<h2 id="why-most-habit-trackers-hurt-more-than-they-help">Why Most Habit Trackers Hurt More Than They Help</h2>
 <p>The habit tracking app market is worth billions. Yet 73% of users abandon their habit tracker within two weeks. The reason isn&rsquo;t that people are lazy or lack willpower — it&rsquo;s that the apps are built on broken psychology.</p>
-<h3>The Streak Trap</h3>
+<h3 id="the-streak-trap">The Streak Trap</h3>
 <p>Streaks sound motivating in theory. In practice, they create a fragile all-or-nothing dynamic. You meditate for 14 days straight, feel great about your streak, then get sick and miss Day 15. Your streak resets to zero. Two weeks of progress — emotionally erased in a single moment. Research from the University of London found that streak-based habit apps actually <em>decrease</em> long-term adherence for users with anxiety or depression, because the loss aversion from breaking a streak is more powerful than the motivation to continue.</p>
 <p>HoneyDew doesn&rsquo;t track streaks. It tracks <em>patterns</em>. You&rsquo;ll see that you meditated 11 out of 14 days this week — and that&rsquo;s celebrated as the achievement it is, not punished as a 3-day failure.</p>
-<h3>The Overcommitment Spiral</h3>
+<h3 id="the-overcommitment-spiral">The Overcommitment Spiral</h3>
 <p>Most habit trackers encourage you to add every habit at once. Morning meditation. Journaling. Exercise. Hydration. Reading. Gratitude practice. By Day 3, you&rsquo;re overwhelmed. By Day 7, you&rsquo;ve abandoned everything.</p>
 <p>HoneyDew takes the opposite approach. The app gently suggests starting with <em>one</em> habit. Just one. When that feels natural — not easy, not perfect, just <em>natural</em> — you can add another. There&rsquo;s no pressure to fill your dashboard with a dozen green checkmarks. A single consistent habit is worth more than ten abandoned ones.</p>
-<h3>The Judgment Engine</h3>
+<h3 id="the-judgment-engine">The Judgment Engine</h3>
 <p>Badges that say &ldquo;You missed 3 days this week.&rdquo; Graphs that plunge downward after a gap. Red indicators that light up when you&rsquo;re behind. These aren&rsquo;t motivational tools — they&rsquo;re judgment engines. And for anyone dealing with depression, ADHD, chronic illness, or burnout recovery, that judgment can be actively harmful.</p>
 <p>HoneyDew has no red indicators. No failure states. No language that implies you&rsquo;re falling behind. The interface uses only warm, encouraging language — even when you haven&rsquo;t opened the app in a week. Especially then.</p>
 <hr />
-<h2>3 Core Features That Make HoneyDew Different</h2>
-<h3>1. Wellness Quests — Gamified Self-Care Without the Pressure</h3>
+<h2 id="3-core-features-that-make-honeydew-different">3 Core Features That Make HoneyDew Different</h2>
+<h3 id="1-wellness-quests-gamified-self-care-without-the-pressure">1. Wellness Quests — Gamified Self-Care Without the Pressure</h3>
 <p>HoneyDew reframes habit building as a series of gentle wellness quests — small, achievable challenges designed to feel rewarding rather than demanding.</p>
 <p><strong>How wellness quests work:</strong></p>
 <ul>
@@ -133,7 +163,7 @@ class MoodAwareTracker:
 <li><strong>Story progression</strong>: As you complete quests, you unlock a gentle narrative about a character on their own wellness journey. It&rsquo;s not gamified in the aggressive &ldquo;level up! power up!&rdquo; sense — it&rsquo;s more like reading a quiet, encouraging story where your real-life habits drive the plot forward. Think of it as a wellness journal that writes itself.</li>
 </ul>
 <p>The quest system replaces the cold checkbox grid of traditional trackers with something that feels more like self-care and less like homework.</p>
-<h3>2. Flexible Scheduling — Routines That Bend, Not Break</h3>
+<h3 id="2-flexible-scheduling-routines-that-bend-not-break">2. Flexible Scheduling — Routines That Bend, Not Break</h3>
 <p>Life doesn&rsquo;t run on a perfect schedule. You get sick. You travel. You have a terrible, no-good, very bad day where brushing your teeth feels like an accomplishment. Most habit trackers can&rsquo;t handle this — they treat every day as identical, every deviation as failure.</p>
 <p>HoneyDew&rsquo;s flexible scheduling is built for real life:</p>
 <ul>
@@ -141,7 +171,7 @@ class MoodAwareTracker:
 <li><strong>Rest day recognition</strong>: The app tracks your energy patterns and proactively suggests rest days. &ldquo;You&rsquo;ve been going strong all week — how about a gentler day tomorrow?&rdquo; This isn&rsquo;t the app giving up on you; it&rsquo;s the app understanding that sustainable habits include rest.</li>
 <li><strong>Seasonal adjustment</strong>: HoneyDew recognizes that your habits naturally shift with seasons, life events, and energy cycles. The app adjusts your suggested routines during known high-stress periods (holidays, work deadlines, seasonal depression windows) rather than holding you to summer standards in the depths of February.</li>
 </ul>
-<h3>3. Mood-Aware Tracking — The Missing Piece</h3>
+<h3 id="3-mood-aware-tracking-the-missing-piece">3. Mood-Aware Tracking — The Missing Piece</h3>
 <p>Traditional habit trackers ask &ldquo;Did you do the thing?&rdquo; and nothing else. But the <em>how</em> matters as much as the <em>did</em>. Meditating while your brain is screaming with anxiety is a fundamentally different experience than meditating in calm — and your tracker should recognize that.</p>
 <p>HoneyDew&rsquo;s mood-aware tracking adds an emotional layer to your wellness data:</p>
 <ul>
@@ -150,22 +180,22 @@ class MoodAwareTracker:
 <li><strong>Gentle insights</strong>: After two weeks of tracking, HoneyDew offers soft insights — not data-heavy analytics dashboards, but simple observations. &ldquo;You seem to enjoy your morning routine more on days you sleep well&rdquo; or &ldquo;Movement helps your mood most on stressful days.&rdquo; These insights are phrased as observations, not commands.</li>
 </ul>
 <hr />
-<h2>Benefits of HoneyDew for Burnout Recovery</h2>
-<h3>Designed for the Days When Getting Out of Bed Is Enough</h3>
+<h2 id="benefits-of-honeydew-for-burnout-recovery">Benefits of HoneyDew for Burnout Recovery</h2>
+<h3 id="designed-for-the-days-when-getting-out-of-bed-is-enough">Designed for the Days When Getting Out of Bed Is Enough</h3>
 <p>Burnout recovery isn&rsquo;t about building ten new habits overnight. It&rsquo;s about slowly, gently rebuilding your relationship with self-care after your capacity has been depleted. HoneyDew is designed for this specific phase of life:</p>
 <ul>
 <li><strong>Ultra-low entry points</strong>: HoneyDew includes &ldquo;micro-habits&rdquo; that take less than 60 seconds. &ldquo;Drink a glass of water.&rdquo; &ldquo;Take three deep breaths.&rdquo; &ldquo;Step outside for 30 seconds.&rdquo; These aren&rsquo;t placeholders — they&rsquo;re genuinely therapeutic actions for someone in burnout recovery, where the activation energy for any task feels insurmountable.</li>
 <li><strong>Celebration of small wins</strong>: When you complete a micro-habit, HoneyDew responds with genuine warmth — not over-the-top confetti, but a soft acknowledgment that you did something kind for yourself today. For burnout survivors, this recognition can be surprisingly powerful.</li>
 <li><strong>No performance metrics</strong>: There are no weekly scores, no percentage completion rates, no comparison to &ldquo;your best week.&rdquo; You&rsquo;ll never see a graph trending downward. The app is designed to show you what you <em>did</em> accomplish, not what you didn&rsquo;t.</li>
 </ul>
-<h3>A Self-Care Routine App That Respects Your Energy</h3>
+<h3 id="a-self-care-routine-app-that-respects-your-energy">A Self-Care Routine App That Respects Your Energy</h3>
 <p>Burnout recovery requires radical energy conservation. HoneyDew helps you invest your limited energy in the self-care practices that actually restore you, rather than draining it on tracking overhead:</p>
 <ul>
 <li><strong>One-tap logging</strong>: Most habits can be logged with a single tap. No forms, no sub-menus, no &ldquo;rate your experience 1-10.&rdquo; Did you do it? Tap. Done.</li>
 <li><strong>Smart defaults</strong>: The app learns your routine and starts pre-filling suggestions. If you always meditate after breakfast, it&rsquo;ll surface that suggestion at the right time. Decision fatigue is real — HoneyDew reduces it.</li>
 <li><strong>Gentle reminders, not alarms</strong>: HoneyDew&rsquo;s notifications are phrased as invitations, not demands. &ldquo;A gentle reminder: you wanted to try some movement today&rdquo; — not &ldquo;TIME TO EXERCISE! YOU MISSED YESTERDAY!&rdquo; You can customize the tone from soft nudge to completely silent.</li>
 </ul>
-<h3>Rebuilding Self-Trust</h3>
+<h3 id="rebuilding-self-trust">Rebuilding Self-Trust</h3>
 <p>The deepest benefit of a gentle habit tracker isn&rsquo;t the habits themselves — it&rsquo;s rebuilding the self-trust that burnout erodes. When you tell yourself &ldquo;I&rsquo;ll meditate tomorrow&rdquo; and then you actually do it — even once, even imperfectly — you&rsquo;re repairing the broken promise between your intentions and your actions.</p>
 <p>HoneyDew facilitates this repair by:<br />
 - Never making you feel bad about gaps<br />
@@ -173,64 +203,194 @@ class MoodAwareTracker:
 - Framing every interaction as a choice, not an obligation<br />
 - Reminding you that self-care isn&rsquo;t a performance — it&rsquo;s a practice</p>
 <hr />
-<h2>Frequently Asked Questions About HoneyDew</h2>
-<h3>Is HoneyDew just another habit tracker? What makes it &ldquo;gentle&rdquo;?</h3>
+<h2 id="frequently-asked-questions-about-honeydew">Frequently Asked Questions About HoneyDew</h2>
+<h3 id="is-honeydew-just-another-habit-tracker-what-makes-it-gentle">Is HoneyDew just another habit tracker? What makes it &ldquo;gentle&rdquo;?</h3>
 <p>HoneyDew is a habit tracker, but it&rsquo;s built on fundamentally different principles than apps like Streaks, Habitica, or TickTick. The core difference is our no-shame design philosophy: no streaks to break, no failure states, no guilt-inducing notifications, and no metrics that quantify your &ldquo;performance&rdquo; at self-care. Every interaction is designed to feel encouraging rather than demanding. If you&rsquo;ve ever abandoned a habit tracker because it made you feel worse about yourself, HoneyDew was built for you.</p>
-<h3>I have depression/anxiety. Will HoneyDew help or make things worse?</h3>
+<h3 id="i-have-depressionanxiety-will-honeydew-help-or-make-things-worse">I have depression/anxiety. Will HoneyDew help or make things worse?</h3>
 <p>HoneyDew was specifically designed for people managing mental health challenges. Unlike streak-based trackers that can worsen guilt spirals, HoneyDew&rsquo;s flexible scheduling and mood-aware tracking are built to accommodate the natural fluctuations of depression and anxiety. The app never penalizes you for low-energy days, includes ultra-low-effort &ldquo;micro-habits&rdquo; for when getting out of bed feels like a victory, and uses language that&rsquo;s consistently warm and non-judgmental. Many of our users specifically sought out HoneyDew after traditional trackers triggered their anxiety.</p>
-<h3>What is a &ldquo;wellness quest&rdquo; and how is it different from a regular habit?</h3>
+<h3 id="what-is-a-wellness-quest-and-how-is-it-different-from-a-regular-habit">What is a &ldquo;wellness quest&rdquo; and how is it different from a regular habit?</h3>
 <p>A wellness quest is HoneyDew&rsquo;s approach to habit formation. Instead of setting a rigid daily goal (&ldquo;meditate for 10 minutes every day&rdquo;), you accept a gentle quest (&ldquo;try 3 minutes of mindful breathing this week&rdquo;). Quests have flexible timeframes, adaptive difficulty, and a narrative layer that makes self-care feel like a journey rather than a checklist. The quest structure reduces the pressure that comes with traditional habit tracking while maintaining the structure that makes habits stick.</p>
-<h3>Is HoneyDew a wellness quest app like Habitica or Finch?</h3>
+<h3 id="is-honeydew-a-wellness-quest-app-like-habitica-or-finch">Is HoneyDew a wellness quest app like Habitica or Finch?</h3>
 <p>HoneyDew draws inspiration from both but serves a different purpose. Habitica is a full RPG with parties, battles, and pixel art — great if you want heavy gamification, but the game mechanics can feel stressful when you&rsquo;re struggling. Finch uses a virtual pet for emotional support — lovely for mood tracking, but less structured for habit building. HoneyDew sits in the middle: gentle enough for low-energy days, structured enough to build real self-care routines. Think of it as the calm, encouraging friend who doesn&rsquo;t make self-care feel like a competitive sport.</p>
-<h3>Can I use HoneyDew for fitness and exercise habits?</h3>
+<h3 id="can-i-use-honeydew-for-fitness-and-exercise-habits">Can I use HoneyDew for fitness and exercise habits?</h3>
 <p>Yes, but with an important distinction: HoneyDew is optimized for sustainable, gentle movement rather than intense fitness tracking. If your goal is to train for a marathon or track PRs, you&rsquo;d be better served by a dedicated fitness app. But if you want to build a consistent movement practice — daily walks, gentle yoga, stretching routines, or simply &ldquo;move my body for 10 minutes&rdquo; — HoneyDew&rsquo;s flexible scheduling and mood-aware tracking are ideal. The app celebrates the consistency of showing up, not the intensity of the workout.</p>
-<h3>Does HoneyDew cost money?</h3>
+<h3 id="does-honeydew-cost-money">Does HoneyDew cost money?</h3>
 <p>HoneyDew offers a generous free tier that includes all core tracking features, the wellness quest library, mood check-ins, and flexible scheduling. Premium adds advanced insights, custom quest creation, and additional narrative content for $4.99/month or $29.99/year. We believe self-care tools should be accessible — the free version has everything you need to build a lasting self-care routine.</p>
-<h3>How is HoneyDew different from a therapy app like BetterHelp or Talkspace?</h3>
+<h3 id="how-is-honeydew-different-from-a-therapy-app-like-betterhelp-or-talkspace">How is HoneyDew different from a therapy app like BetterHelp or Talkspace?</h3>
 <p>HoneyDew is not a therapy app and does not provide mental health treatment. It&rsquo;s a habit and wellness tracker designed to complement your existing mental health support — whether that&rsquo;s therapy, medication, support groups, or self-directed care. HoneyDew helps you build and maintain the daily wellness routines (movement, mindfulness, sleep hygiene, creative expression) that support mental health, but it doesn&rsquo;t diagnose, treat, or replace professional care.</p>
-<h3>Does HoneyDew work offline?</h3>
+<h3 id="does-honeydew-work-offline">Does HoneyDew work offline?</h3>
 <p>Yes. All core features — habit tracking, mood check-ins, quest progression, and flexible scheduling — work fully offline. Your data syncs when you reconnect, but you&rsquo;ll never be blocked from logging a habit because you lost Wi-Fi. This is especially important for habits like &ldquo;take a walk outside&rdquo; or &ldquo;meditate in nature&rdquo; where being offline is kind of the point.</p>
-<h3>I&rsquo;ve tried and quit five habit trackers this year. Why should I try another one?</h3>
+<h3 id="ive-tried-and-quit-five-habit-trackers-this-year-why-should-i-try-another-one">I&rsquo;ve tried and quit five habit trackers this year. Why should I try another one?</h3>
 <p>Honestly? You might not need another habit tracker. You might need a therapist, a rest, or a fundamentally different approach to self-care. But if you&rsquo;re still reading this, it&rsquo;s because some part of you wants the structure of a habit tracker without the guilt — and that&rsquo;s exactly what HoneyDew is. We built it specifically for people who&rsquo;ve been burned by other trackers. The worst case scenario is you try it for a week, find it gently encouraging, and either keep using it or move on without a single guilt notification. We&rsquo;re okay with either outcome.</p>
 <hr />
-<h2>Start Your Wellness Quest — No Pressure, No Streaks, No Shame</h2>
+<h2 id="start-your-wellness-quest-no-pressure-no-streaks-no-shame">Start Your Wellness Quest — No Pressure, No Streaks, No Shame</h2>
 <p>HoneyDew isn&rsquo;t about becoming a &ldquo;better&rdquo; version of yourself through optimized habits and gamified productivity. It&rsquo;s about being kinder to yourself while gently, gradually building the self-care routines that help you feel more like <em>you</em>.</p>
 <p>You don&rsquo;t need to be ready. You don&rsquo;t need to be motivated. You just need to open the app and pick one small thing. That&rsquo;s it. HoneyDew will handle the rest — softly, patiently, and without judgment.</p>
 <p><strong>Download HoneyDew free</strong> and discover what self-care feels like when there&rsquo;s no one keeping score.</p>
 <p><em>HoneyDew: Gentle Habit Tracker — Self-Care Without the Shame</em></p>
     </div>
+
     <footer class="post-footer">
       <div class="post-tags">
         
-        <span class="tag">gentle habit tracker</span>
+        <a href="/?q=gentle%20habit%20tracker" class="tag">gentle habit tracker</a>
         
-        <span class="tag">wellness quest app</span>
+        <a href="/?q=wellness%20quest%20app" class="tag">wellness quest app</a>
         
-        <span class="tag">self-care routine</span>
+        <a href="/?q=self-care%20routine" class="tag">self-care routine</a>
         
-        <span class="tag">burnout recovery</span>
+        <a href="/?q=burnout%20recovery" class="tag">burnout recovery</a>
         
-        <span class="tag">no-streak habit tracker</span>
+        <a href="/?q=no-streak%20habit%20tracker" class="tag">no-streak habit tracker</a>
         
-        <span class="tag">wellness habits</span>
+        <a href="/?q=wellness%20habits" class="tag">wellness habits</a>
         
-        <span class="tag">mental health tracker</span>
+        <a href="/?q=mental%20health%20tracker" class="tag">mental health tracker</a>
         
-        <span class="tag">shame-free habits</span>
+        <a href="/?q=shame-free%20habits" class="tag">shame-free habits</a>
         
-        <span class="tag">mood-aware tracking</span>
+        <a href="/?q=mood-aware%20tracking" class="tag">mood-aware tracking</a>
         
-        <span class="tag">gentle self-care</span>
+        <a href="/?q=gentle%20self-care" class="tag">gentle self-care</a>
         
       </div>
       <p class="post-author">Written by <strong>VexPivot</strong></p>
+      <p class="published-by-line">Published by <strong>VexPivot</strong> &mdash; Building apps that work with your brain, not against it.</p>
     </footer>
   </article>
+
   <nav class="post-nav">
     <a href="/" class="back-link">&larr; Back to all posts</a>
   </nav>
 
+  <script>
+    // ===== Post-page interactivity =====
+    (function() {
+      'use strict';
+
+      var postEl = document.querySelector('.blog-post');
+      if (!postEl) return;
+
+      // Auto-generate table of contents from headings in the post body
+      var tocList = document.getElementById('toc-list');
+      var postBody = postEl.querySelector('.post-body');
+      if (tocList && postBody) {
+        var headings = postBody.querySelectorAll('h2, h3');
+        if (headings.length > 0) {
+          var html = '';
+          headings.forEach(function(h) {
+            if (!h.id) {
+              h.id = h.textContent.trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+            }
+            var level = h.tagName.toLowerCase();
+            var cls = level === 'h3' ? 'toc-item toc-h3' : 'toc-item toc-h2';
+            html += '<a class="' + cls + '" href="#' + h.id + '">' +
+                    h.textContent.trim() + '</a>';
+          });
+          tocList.innerHTML = html;
+        } else {
+          tocList.innerHTML = '<p class="toc-empty">No sections found.</p>';
+        }
+      }
+
+      // TOC collapse toggle
+      var tocToggle = document.getElementById('toc-toggle');
+      if (tocToggle && tocList) {
+        tocToggle.addEventListener('click', function() {
+          var expanded = tocToggle.getAttribute('aria-expanded') === 'true';
+          tocToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          tocList.classList.toggle('is-collapsed', expanded);
+        });
+      }
+
+      // Copy link button
+      var copyBtn = document.getElementById('copy-link-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function() {
+          var url = window.location.href;
+          var done = function() {
+            var orig = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span aria-hidden="true">✓</span> Copied!';
+            setTimeout(function() { copyBtn.innerHTML = orig; }, 1500);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(done).catch(function() {
+              fallbackCopy(url); done();
+            });
+          } else {
+            fallbackCopy(url); done();
+          }
+        });
+      }
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        try { document.execCommand('copy'); } catch (e) { /* noop */ }
+        document.body.removeChild(ta);
+      }
+
+      // Share button — uses Web Share API when available
+      var shareBtn = document.getElementById('share-btn');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+          var data = {
+            title: document.title,
+            text: document.querySelector('meta[name="description"]').getAttribute('content'),
+            url: window.location.href,
+          };
+          if (navigator.share) {
+            navigator.share(data).catch(function() { /* user cancelled */ });
+          } else {
+            fallbackCopy(data.url);
+            var orig = shareBtn.innerHTML;
+            shareBtn.innerHTML = '<span aria-hidden="true">✓</span> Link copied';
+            setTimeout(function() { shareBtn.innerHTML = orig; }, 1500);
+          }
+        });
+      }
+
+      // Print button
+      var printBtn = document.getElementById('print-btn');
+      if (printBtn) {
+        printBtn.addEventListener('click', function() { window.print(); });
+      }
+
+      // Reading time tracker — emits a read event after the user has scrolled 80%
+      var fired = false;
+      function checkRead() {
+        if (fired) return;
+        var doc = document.documentElement;
+        var scrolled = doc.scrollTop || document.body.scrollTop;
+        var max = (doc.scrollHeight - doc.clientHeight) || 1;
+        if (scrolled / max >= 0.8) {
+          fired = true;
+          try {
+            if (window.console && console.info) {
+              console.info('Article marked as read:', document.title);
+            }
+            document.body.classList.add('article-read');
+          } catch (e) { /* noop */ }
+        }
+      }
+      window.addEventListener('scroll', checkRead, { passive: true });
+    })();
+  </script>
+
   </main>
+
+  <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top" title="Back to top">
+    <span aria-hidden="true">↑</span>
+  </button>
+
   <footer class="site-footer"><div class="container">
     <p><strong>Published by VexPivot</strong> &mdash; Building apps that work with your brain, not against it.</p>
     <p class="footer-links">
@@ -244,5 +404,116 @@ class MoodAwareTracker:
     </p>
     <p class="footer-meta">&copy; 2026 VexPivot LLC. All rights reserved.</p>
   </div></footer>
+
+  <script>
+    // ===== VexPivot Blog — Interactive Features =====
+    (function() {
+      'use strict';
+
+      // Theme toggle (light/dark mode)
+      var THEME_KEY = 'vexpivot-theme';
+      var html = document.documentElement;
+      var body = document.body;
+
+      function applyTheme(theme) {
+        body.classList.remove('theme-light', 'theme-dark');
+        body.classList.add('theme-' + theme);
+        html.classList.remove('theme-light', 'theme-dark');
+        html.classList.add('theme-' + theme);
+      }
+
+      function getStoredTheme() {
+        try {
+          var stored = localStorage.getItem(THEME_KEY);
+          if (stored === 'dark' || stored === 'light') return stored;
+        } catch (e) { /* localStorage unavailable */ }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+
+      applyTheme(getStoredTheme());
+
+      var themeBtn = document.getElementById('theme-toggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+          var current = body.classList.contains('theme-dark') ? 'dark' : 'light';
+          var next = current === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+          try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* noop */ }
+        });
+      }
+
+      // Reading progress bar
+      var progressEl = document.getElementById('reading-progress');
+      function updateProgress() {
+        if (!progressEl) return;
+        var doc = document.documentElement;
+        var scrolled = doc.scrollTop || document.body.scrollTop;
+        var max = (doc.scrollHeight - doc.clientHeight) || 1;
+        var pct = Math.min(100, Math.max(0, (scrolled / max) * 100));
+        progressEl.style.width = pct + '%';
+        progressEl.setAttribute('aria-valuenow', String(Math.round(pct)));
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
+
+      // Scroll-to-top button
+      var scrollBtn = document.getElementById('scroll-top');
+      function updateScrollBtn() {
+        if (!scrollBtn) return;
+        var scrolled = window.scrollY || document.documentElement.scrollTop;
+        scrollBtn.classList.toggle('is-visible', scrolled > 400);
+      }
+      if (scrollBtn) {
+        scrollBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+      window.addEventListener('scroll', updateScrollBtn, { passive: true });
+      updateScrollBtn();
+
+      // Smooth anchor scrolling with offset for sticky header
+      document.addEventListener('click', function(e) {
+        var target = e.target;
+        while (target && target.tagName !== 'A') target = target.parentNode;
+        if (!target || !target.getAttribute) return;
+        var href = target.getAttribute('href');
+        if (!href || href.charAt(0) !== '#') return;
+        var el = document.querySelector(href);
+        if (el) {
+          e.preventDefault();
+          var top = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+          history.replaceState(null, '', href);
+        }
+      });
+
+      // Heading anchor links — add # links to all h2/h3 in post body
+      var postBody = document.querySelector('.post-body');
+      if (postBody) {
+        var headings = postBody.querySelectorAll('h2, h3');
+        headings.forEach(function(h) {
+          if (!h.id) {
+            h.id = h.textContent.trim()
+              .toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-|-$/g, '');
+          }
+        });
+      }
+
+      // Mark external links
+      var postLinks = document.querySelectorAll('.post-body a[href^="http"]');
+      postLinks.forEach(function(link) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+    })();
+  </script>
 </body>
 </html>
